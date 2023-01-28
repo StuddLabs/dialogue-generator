@@ -13,6 +13,8 @@ const exists = (origin, character) => origin.indexOf(character) > -1
 const Elinput = (id, ph) => `<input id="${id}" class="ph-${ph}" autocomplete="off" type="text">`
 const get_diolgue = (dialogue) => data.filter((el) => el.id === `$dialogue-${dialogue}`)[0]
 
+const audio_url = (id) => `https://prod-files-dialogue-generator.s3.amazonaws.com/audio/audio-${id}.mp3`
+
 const addClass = (element, clx) => element.classList.add(clx)
 const removeClass = (element, clx) => element.classList.remove(clx)
 
@@ -55,7 +57,7 @@ function generate_dialogue(dialogue) {
             <section>
                 <div class="container_audio">
                     <audio>
-                        <source src="./src/assets/audio/audio-${dialogue}.mp3" type="audio/mp3">
+                        <source src="${audio_url(dialogue)}" type="audio/mp3">
                     </audio>
                     <div class="btn_container"><button class="btn-loop"></button></div>
                     <div class="btn_container"><button class="btn-play-pause"></button></div>
@@ -75,7 +77,6 @@ function generate_dialogue(dialogue) {
     if (btn_exist !== null) {
         const btn = document.getElementById(`${dialogue}`)
         if (!btn.className) {
-            console.log(btn.className);
             addClass(btn, "active")
             btn.style.background = "#22de8c"
         } else {
@@ -84,16 +85,20 @@ function generate_dialogue(dialogue) {
         }
     }
 
+    const $audio = $(".container audio")
+    const $loop = $(".container .btn-loop")
+    const $playPause = $(".container .btn-play-pause")
+    const $stop = $(".container .btn-stop")
+    const $sendBtn = $(".container .btn-send")
+    $audio.currentTime = dy.audio_init
+
     $$(".menu button").forEach(btn => {
         btn.addEventListener("click", () => {
+            $audio.currentTime = dy.audio_init
             generate_dialogue(btn.id)
         })
     })
 
-    const $audio = $(".container audio")
-    const $loop = $(".container .btn-loop")
-    const $playPause = $(".container .btn-play-pause")
-    const $sendBtn = $(".container .btn-send")
 
     $loop.addEventListener("click", () => {
         if (!$audio.loop) {
@@ -105,6 +110,8 @@ function generate_dialogue(dialogue) {
     })
 
     $playPause.addEventListener("click", () => {
+        $audio.currentTime === +dy.audio_init ? $("input").focus() : true
+
         if ($audio.paused) {
             $audio.play()
             $playPause.style.backgroundImage = "url('src/assets/icons/pause.svg')";
@@ -112,6 +119,14 @@ function generate_dialogue(dialogue) {
             $(".btn-send").disabled = true
             $(".btn-send").style.background = "#e4e4e4"
             $(".btn-send").style.color = "#4444447d"
+
+            $audio.addEventListener("ended", () => {
+                $playPause.style.backgroundImage = "url('src/assets/icons/play.svg')";
+                $playPause.parentNode.style.background = "#519df5"
+                $(".btn-send").disabled = false
+                $(".btn-send").style.background = "#519df5"
+                $(".btn-send").style.color = "#fff"
+            });
         } else {
             $audio.pause()
             $playPause.style.backgroundImage = "url('src/assets/icons/play.svg')";
@@ -122,9 +137,9 @@ function generate_dialogue(dialogue) {
         }
     })
 
-    $(".container .btn-stop").addEventListener("click", () => {
+    $stop.addEventListener("click", () => {
         $audio.pause()
-        $audio.currentTime = 0
+        $audio.currentTime = dy.audio_init
         $playPause.style.backgroundImage = "url('src/assets/icons/play.svg')";
         $playPause.parentNode.style.background = "#519df5"
 
@@ -158,6 +173,7 @@ function generate_dialogue(dialogue) {
         let temp = ""
         let count = 0
         $$(".container input").forEach((el, idx) => {
+            ""
             let text = el.parentNode.innerHTML
             const clx = "#phase-" + (el.className.split("-")[1]);
 
@@ -201,8 +217,44 @@ function generate_dialogue(dialogue) {
             }
         })
 
-        $sendBtn.addEventListener("click", () => generate_dialogue(dialogue))
+        $sendBtn.addEventListener("click", () => {
+            generate_dialogue(dialogue)
+        })
     })
+
+    let lastShortcut = new Date();
+    let interval = 350
+
+    // document.addEventListener("keydown", (e) => {
+    //     function check_time(cmd) {
+    //         e.preventDefault()
+    //         if (new Date() - lastShortcut < interval) {
+    //             return;
+    //         } else {
+    //             lastShortcut = new Date();
+    //             const shortcuts = {
+    //                 playPause: () => {
+
+    //                 },
+    //                 loop: () => $loop.click(),
+    //                 stop: () => $stop.click(),
+    //                 menu_nav: () => {
+    //                     $stop.click()
+    //                     const $btn_menu = $$(".menu button")[+e.key - 1]
+    //                     $btn_menu !== undefined ? generate_dialogue($btn_menu.id) : true
+    //                 },
+    //             }
+    //             shortcuts[cmd]()
+    //         }
+    //     }
+
+    //     const box_number = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    //     e.ctrlKey && e.key === "i" ? check_time("playPause") : true
+    //     e.ctrlKey && e.key === "s" ? check_time("stop") : true
+    //     e.ctrlKey && e.key === "l" ? check_time("loop") : true
+    //     // e.altKey && box_number.includes(+e.key) ? check_time("menu_nav") : true
+
+    // });
 }
 
 function create_dialogue() {
@@ -223,9 +275,10 @@ function create_dialogue() {
     $(".create_container button").addEventListener("click", (e) => {
         e.preventDefault()
         const temp = {
-            "id": "$dialogue-",
+            "id": "$dialogue-n",
             "title": $(".create_container #title").value,
-            "phases": $("#phases").value.split("\n")
+            "phases": $("#phases").value.split("\n"),
+            "audio_init": "0"
         }
 
         data.push(temp)
