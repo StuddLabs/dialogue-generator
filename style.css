@@ -14,8 +14,6 @@ a {
 
 body {
     background: #f2f2f2;
-    color: rgb(68, 68, 68);
-
 }
 
 input,
@@ -104,15 +102,15 @@ button {
 }
 
 .container_audio .btn-loop {
-    background-image: url("../assets/icons/loop.svg");
+    background-image: url("https://prod-files-dialogue-generator.s3.amazonaws.com/icons/loop.svg");
 }
 
 .container_audio .btn-play-pause {
-    background-image: url("../assets/icons/play.svg");
+    background-image: url("https://prod-files-dialogue-generator.s3.amazonaws.com/icons/play.svg");
 }
 
 .container_audio .btn-stop {
-    background-image: url("../assets/icons/stop.svg");
+    background-image: url("https://prod-files-dialogue-generator.s3.amazonaws.com/icons/stop.svg");
 }
 
 .container_button .btn-send {
@@ -138,6 +136,34 @@ button {
 
 h2 {
     margin-bottom: 20px;
+}
+
+.container_tip {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 2px solid #c4c4c4;
+    margin-bottom: 15px;
+}
+
+.container_tip button {
+    background: #e4e4e4;
+    padding: 10px 30px;
+    border-radius: 10px;
+    margin-right: 10px;
+    color: rgb(185, 185, 185);
+    font-weight: 600;
+}
+
+
+.container_tip span {
+    color: rgb(151, 151, 151);
+    font-weight: 600;
+}
+
+
+.container_tip div {
+    display: flex;
+    justify-content: space-between;
 }
 
 .phases_container p {
