@@ -8,7 +8,7 @@ interface HoverProps {
 
 const Button = styled.a<CSSProperties & HoverProps>`
   width: ${props => props.width || '120px'};
-  height: ${props => props.height || '40px'};
+  height: ${props => props.height || '50px'};
   padding: ${props => props.padding || '20px'};
 
   filter: ${props => props.filter || 'drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.12))'};

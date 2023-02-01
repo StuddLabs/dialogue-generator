@@ -11,7 +11,7 @@ function Wellcome() {
   return (
     <WellcomeWrapper>
       <h1>Wellcome!!!</h1>
-      <Button href="/login">Start</Button>
+      <Button href="/dialogue">Start</Button>
     </WellcomeWrapper >
   )
 }
@@ -33,3 +33,4 @@ const WellcomeWrapper = styled.div`
 `
 
 export default Wellcome;
+
