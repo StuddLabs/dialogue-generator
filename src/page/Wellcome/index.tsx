@@ -1,20 +1,19 @@
 
 import styled from "styled-components"
 import Button from "../../component/Button"; // Compoment
-import Dialogue from "../Dialogue"; // Page
 
 // Structure
 function Wellcome() {
-    function start() {
-        Dialogue()
-    }
+  // const handleClick = () => {
+  //   redirect("/editor")
+  // };
 
-    return (
-        <WellcomeWrapper>
-            <h1>Wellcome!!!</h1>
-            <Button onClick={start}>Start</Button>
-        </WellcomeWrapper >
-    )
+  return (
+    <WellcomeWrapper>
+      <h1>Wellcome!!!</h1>
+      <Button href="/login">Start</Button>
+    </WellcomeWrapper >
+  )
 }
 
 // Style

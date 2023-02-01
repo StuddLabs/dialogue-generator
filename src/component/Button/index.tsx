@@ -2,14 +2,14 @@ import styled, { CSSProperties } from 'styled-components';
 import color from '../../style/color';
 
 interface HoverProps {
-    hoverBackground?: string
-    hoverColor?: string
+  hoverBackground?: string
+  hoverColor?: string
 }
 
-const Button = styled.button<CSSProperties & HoverProps>`
+const Button = styled.a<CSSProperties & HoverProps>`
   width: ${props => props.width || '120px'};
   height: ${props => props.height || '40px'};
-  padding: ${props => props.padding || '0'};
+  padding: ${props => props.padding || '20px'};
 
   filter: ${props => props.filter || 'drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.12))'};
   margin: ${props => props.margin || '0'};
@@ -30,6 +30,10 @@ const Button = styled.button<CSSProperties & HoverProps>`
   font-size: ${props => props.fontSize || '15px'};
   font-weight: ${props => props.fontWeight || '600'};
   letter-spacing: ${props => props.letterSpacing || '1.2px'};
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     background: ${props => props.hoverBackground || color.button_hover};
