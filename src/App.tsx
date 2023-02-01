@@ -8,6 +8,7 @@ import Dialogue from "./page/Dialogue";
 import Editor from "./page/Editor";
 import Help from "./page/Help";
 import Home from './page/Home';
+import LadingPage from './page/LadingPage';
 import Login from './page/Login';
 import Singin from './page/Singin';
 import Wellcome from "./page/Wellcome";
@@ -25,7 +26,8 @@ function App(props: AppProps) {
 
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<LadingPage />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/wellcome" element={<Wellcome />} />
         <Route path="/editor" element={<Editor />} />
         <Route path="/dialogue" element={<Dialogue />} />
