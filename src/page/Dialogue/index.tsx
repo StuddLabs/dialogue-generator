@@ -1,9 +1,8 @@
-
+import { useState, useRef } from "react";
 import styled from "styled-components"
-import AudioActionWrapper from "../../component/AudioAction";
 import Button from "../../component/Button";
 import DialoguePhaseWrapper from "../../component/DialoguePhase";
-import MenuWrapper from "../../component/Menu";
+import color from "../../style/color";
 
 const data = [
   {
@@ -92,6 +91,15 @@ const data = [
 
 // Structure
 function Dialogue() {
+  const id_first_el = data[0].id.split("-")[1]
+  const base_url = "https://prod-files-dialogue-generator.s3.amazonaws.com"
+  const audio_url = (id: string) => `${base_url}/audio/audio-${id}.mp3`
+  const icon_url = (id: string) => `url('${base_url}/icons/${id}.svg')`
+
+  const AudioPlayer = styled.audio``
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const audioRefNow = audioRef.current
+
   const menuBtns = data.map((el) => {
     let elId = el.id.split("-")[1]
     let btnId = el.id.slice(1)
@@ -111,12 +119,66 @@ function Dialogue() {
     )
   })
 
+  const audioBtns = ["loop", "play", "stop"].map((el) => {
+    const [backgroundColor, setBackgroundColor] = useState(`${color.button}`);
+    const [backgroundImage, setBackgroundImage] = useState(icon_url(el))
+    const [loop, setLoop] = useState(false);
+
+    return (
+      <Button
+        backgroundColor={backgroundColor}
+        backgroundImage={backgroundImage}
+        width={"40px"}
+        height={"40px"}
+        padding={"0"}
+        onClick={() => {
+          switch (el) {
+            case "loop":
+              setLoop(!loop);
+              if (audioRefNow) {
+                if (!loop) {
+                  setBackgroundColor(`${color.button_hover}`)
+                } else {
+                  setBackgroundColor(`${color.button}`)
+                }
+                audioRefNow.loop = !loop
+              }
+              break;
+            case "play":
+              if (audioRefNow) {
+                if (audioRefNow.paused) {
+                  audioRefNow.play()
+                  setBackgroundImage(icon_url("pause"))
+                } else {
+                  audioRefNow.pause()
+                  // setBackgroundImage(icon_url("play"))
+                }
+              }
+              break;
+            case "stop":
+              alert(el)
+              break;
+          }
+        }}
+      >
+      </Button >
+    )
+  })
+
   return (
     <DialogueWrapper>
-      <MenuWrapper>{menuBtns}</MenuWrapper >
+      <AudioPlayer ref={audioRef} src={audio_url(id_first_el)} />
+      <nav>{menuBtns}</nav >
       <ActWrapper>
-        <AudioActionWrapper>Audio</AudioActionWrapper >
-        <DialoguePhaseWrapper>Dialogue</DialoguePhaseWrapper >
+        <header>
+          <section className="section-audio">{audioBtns}</section>
+          <section className="section-process">Process</section>
+        </header>
+        <main>
+          <h2>Title Dialogue Here</h2>
+          <section className="section-box-tip"></section>
+          <section className="section"></section>
+        </main>
       </ActWrapper>
     </DialogueWrapper >
   )
@@ -130,7 +192,46 @@ const DialogueWrapper = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
+
+      nav {
+        background: #000;
+        width: 200px;
+        height: 100%;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px
+      }
+
+      header {
+        background: #c20f0f;
+        width: 700px;
+        height: 10%;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+
+        .section-audio {
+          display: flex;
+          gap: 10px;
+        }
+
+        .section-process {
+        
+        }
+      }
+
+      main {
+        .section-box-tip {
+
+        }
+
+        .section-dialogue-phase {
+          
+        }
+      }
 `
+
 
 const ActWrapper = styled.section`
   height: 100%;

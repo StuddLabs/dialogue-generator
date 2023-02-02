@@ -23,7 +23,7 @@ const Button = styled.a<CSSProperties & HoverProps>`
   background: ${props => props.background || 'none'};
   background-repeat: ${props => props.backgroundRepeat || 'no-repeat'};
   background-position: ${props => props.backgroundPosition || 'center'};
-  /* background-image: ${props => props.backgroundImage || 'url("img.svg")'}; */
+  background-image: ${props => props.backgroundImage || 'url("img.svg")'};
   background-color: ${props => props.backgroundColor || color.button};
 
   color: ${props => props.color || '#fff'};
@@ -36,7 +36,7 @@ const Button = styled.a<CSSProperties & HoverProps>`
   align-items: center;
 
   &:hover {
-    background: ${props => props.hoverBackground || color.button_hover};
+    background-color: ${props => props.hoverBackground || color.button_hover};
     color: ${props => props.hoverColor || '#fff'};
   }
 `;
