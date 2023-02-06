@@ -1,0 +1,175 @@
+// Colors and configs
+@import '../../styles/main.scss';
+
+// Style
+#dialoguePage {
+
+    // All elementes
+    button {
+        background: none;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: $button;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+        width: 120px;
+        height: 40px;
+        border-radius: 10px;
+        border: none;
+
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 1.2px;
+    }
+
+
+    button:hover {
+        background-color: #22de8c;
+    }
+
+
+    background-color: $bgPage;
+    width: 100vw;
+    height: 100vh;
+    padding: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    nav {
+        // background-color: #000; // clear
+        width: 200px;
+        height: 100%;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        button {
+            width: 100%;
+            height: 50px;
+            padding: 15px;
+            font-size: 13px;
+            letter-spacing: 1.4px;
+        }
+    }
+
+    .wrapper {
+        // background-color: #c20f0f; // clear
+        width: 700px;
+        height: 100%;
+        padding: 0 20px;
+    }
+
+    header {
+        // background-color: #4dd51b; // clear
+        height: 10%;
+        display: flex;
+        justify-content: space-between;
+
+        .sc-audio {
+            display: flex;
+            gap: 10px;
+
+            .btn_container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 20px;
+                height: 20px;
+                padding: 20px;
+                background: $button;
+                filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.12));
+                border-radius: 10px;
+            }
+
+            button {
+                background: none;
+                background-repeat: no-repeat;
+                background-position: center;
+                padding: 20px;
+            }
+
+            .btn_loop {
+                background-image: url("https://prod-files-dialogue-generator.s3.amazonaws.com/icons/loop.svg");
+            }
+
+            .btn_play {
+                background-image: url("https://prod-files-dialogue-generator.s3.amazonaws.com/icons/play.svg");
+            }
+
+            .btn_stop {
+                background-image: url("https://prod-files-dialogue-generator.s3.amazonaws.com/icons/stop.svg");
+            }
+
+            .btn_container:hover {
+                background-color: $button_hover
+            }
+        }
+
+        // .sc-process {}
+    }
+
+    main {
+        // background-color: #15b194; // clear
+        height: 90%;
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+
+        // .sc-tip {
+        //     padding: 10px 20px;
+        //     border-radius: 15px;
+        //     border: 2px solid #c4c4c4;
+        //     margin-bottom: 15px;
+
+        //     button {
+        //         background-color: #e4e4e4;
+        //         padding: 10px 30px;
+        //         border-radius: 10px;
+        //         margin-right: 10px;
+        //         color: rgb(185, 185, 185);
+        //         font-weight: 600;
+        //     }
+
+        //     span {
+        //         color: rgb(151, 151, 151);
+        //         font-weight: 600;
+        //     }
+
+        //     div {
+        //         display: flex;
+        //         justify-content: space-between;
+        //     }
+
+        // }
+
+        .sc-phases {
+            div {
+                display: flex;
+                gap: 10px;
+            }
+
+            p {
+                margin-bottom: 10px;
+                font-size: 16.5px;
+                font-weight: 500;
+            }
+
+            input {
+                border: 2px solid #adadad;
+                width: 140px;
+                border-radius: 20px;
+                height: 32px;
+                padding: 10px;
+                margin: 0 2px;
+                background: none;
+                color: rgb(68, 68, 68);
+            }
+
+        }
+    }
+}

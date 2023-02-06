@@ -1,0 +1,46 @@
+.create_container button {
+    background: #519df5;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+    display: block;
+    width: 200px;
+    height: 50px;
+    margin: 20px auto 0 auto;
+    align-items: center;
+    border-radius: 30px;
+    border: none;
+
+    color: #ffffff;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+}
+
+.container .btn-send:hover {
+    background: #22de8c;
+}
+
+.create_container {
+    width: 700px;
+    margin: 0 auto;
+}
+
+.create_container div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.create_container div label {
+    margin-bottom: 5px;
+}
+
+.create_container #title {
+    padding: 0 10px;
+    height: 30px;
+}
+
+.create_container #phases {
+    padding: 10px;
+}
