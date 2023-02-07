@@ -33,6 +33,7 @@
     width: 100vw;
     height: 100vh;
     padding: 35px;
+    margin-bottom: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,16 +43,34 @@
         width: 200px;
         height: 100%;
         padding: 0 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
 
-        button {
-            width: 100%;
-            height: 50px;
-            padding: 15px;
-            font-size: 13px;
-            letter-spacing: 1.4px;
+        .sc-search {
+            input {
+                width: 100%;
+                background: none;
+                padding: 8px 15px;
+                border: 2px solid $input;
+                border-radius: 20px;
+                margin-bottom: 20px;
+                color: $letter;
+                letter-spacing: 1.2px;
+            }
+
+        }
+
+        .sc-mbtn {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            button {
+                width: 100%;
+                height: 50px;
+                padding: 15px;
+                font-size: 13px;
+                letter-spacing: 1.4px;
+            }
+
         }
     }
 
@@ -160,16 +179,85 @@
             }
 
             input {
-                border: 2px solid #adadad;
+                border: 2px solid $input;
                 width: 140px;
                 border-radius: 20px;
                 height: 32px;
                 padding: 10px;
                 margin: 0 2px;
                 background: none;
-                color: rgb(68, 68, 68);
+                color: $letter;
             }
 
         }
+    }
+
+
+    article {
+        // background: #000; // clear
+        // position: absolute;
+        // top: 35px;
+        // right: 35px;
+        width: 60px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: end;
+
+        button {
+            width: 20px;
+            height: 20px;
+            padding: 20px;
+        }
+
+        .sc-menu {
+            width: 40px;
+
+            .menu {
+                background-image: url("../../assets/img/dark-menu.svg");
+                background-color: $bgPage;
+            }
+
+            .menu:hover {
+                background-image: url("../../assets/img/white-menu.svg");
+                background-color: $button_hover;
+            }
+        }
+
+        .sc-action {
+            // background: #862525; // clear
+            width: 40px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+
+            button {
+                border-radius: 100%;
+            }
+
+            // .info {
+            //     background-image: url("../../assets/img/info.svg");
+            // }
+
+            // .rate {
+            //     background-image: url("../../assets/img/rate.svg");
+            // }
+
+            .help {
+                position: fixed;
+                bottom: 5vh;
+                background-image: url("../../assets/img/help.svg");
+            }
+        }
+
+
+
+        // .menu:hover {
+        //     background-image: url("../../assets/img/white-menu.svg");
+        //     background-color: #22de8c;
+        // }
+
     }
 }
